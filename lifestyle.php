@@ -30,18 +30,22 @@ if ($result->num_rows > 0) {
   $artikels = [];
 }
 
-// Query untuk artikel trending
-$sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view FROM artikel ORDER BY view DESC LIMIT 3";
-$result_trending = $conn->query($sql_trending);
+            // Query untuk artikel trending kategori Lifestyle
+            $sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view 
+                 FROM artikel 
+                 WHERE kategori = 'Lifestyle' 
+                 ORDER BY view DESC 
+                 LIMIT 3";
+            $result_trending = $conn->query($sql_trending);
 
-if ($result_trending->num_rows > 0) {
-  $trendings = [];
-  while ($row = $result_trending->fetch_assoc()) {
-    $trendings[] = $row;
-  }
-} else {
-  $trendings = [];
-}
+            if ($result_trending->num_rows > 0) {
+              $trendings = [];
+              while ($row = $result_trending->fetch_assoc()) {
+                $trendings[] = $row;
+              }
+            } else {
+              $trendings = [];
+            }
 ?>
 
 <!DOCTYPE html>
@@ -201,7 +205,7 @@ if ($result_trending->num_rows > 0) {
 
             <?php foreach ($trendings as $index => $trending): ?>
               <div class="grids5-info">
-                <h4><?php echo str_pad($index + 1, 2, ' 0', STR_PAD_LEFT); ?>.</h4>
+                <h4><?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?>.</h4>
                 <div class="blog-info">
                   <a href="#blog-single" class="blog-desc1"><?php echo htmlspecialchars($trending['judul']); ?></a>
                   <div class="author align-items-center mt-2 mb-1">
