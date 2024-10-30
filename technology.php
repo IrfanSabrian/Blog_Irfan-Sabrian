@@ -35,7 +35,11 @@ if ($result->num_rows > 0) {
 }
 
 // Query untuk artikel trending
-$sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view FROM artikel ORDER BY view DESC LIMIT 3";
+$sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view 
+                 FROM artikel 
+                 WHERE kategori = 'Technology' 
+                 ORDER BY view DESC 
+                 LIMIT 3";
 $result_trending = $conn->query($sql_trending);
 
 if ($result_trending->num_rows > 0) {
