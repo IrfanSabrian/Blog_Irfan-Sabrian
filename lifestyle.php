@@ -30,22 +30,22 @@ if ($result->num_rows > 0) {
   $artikels = [];
 }
 
-            // Query untuk artikel trending kategori Lifestyle
-            $sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view 
+// Query untuk artikel trending kategori Lifestyle
+$sql_trending = "SELECT id, kategori, judul, isi, author, tanggal_publikasi, images, view 
                  FROM artikel 
                  WHERE kategori = 'Lifestyle' 
                  ORDER BY view DESC 
                  LIMIT 3";
-            $result_trending = $conn->query($sql_trending);
+$result_trending = $conn->query($sql_trending);
 
-            if ($result_trending->num_rows > 0) {
-              $trendings = [];
-              while ($row = $result_trending->fetch_assoc()) {
-                $trendings[] = $row;
-              }
-            } else {
-              $trendings = [];
-            }
+if ($result_trending->num_rows > 0) {
+  $trendings = [];
+  while ($row = $result_trending->fetch_assoc()) {
+    $trendings[] = $row;
+  }
+} else {
+  $trendings = [];
+}
 ?>
 
 <!DOCTYPE html>
